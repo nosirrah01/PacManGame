@@ -6,9 +6,10 @@ function createPellets() {
     for (let x = 0; x < maze.length; x++) {
         for (let y = 0; y < maze[0].length; y++) {
             if (!maze[x][y]) {
-                pellets.push({ x: x * 32 + 16, y: y * 32 + 16, eaten: false });
-                if ((x + y) % 10 === 0) {
+                if ((x === 1 && y === 1) || (x === 1 && y === HEIGHT - 2) || (x === WIDTH - 2 && y === 1) || (x === WIDTH - 2 && y === HEIGHT - 2)) {
                     powerPellets.push({ x: x * 32 + 16, y: y * 32 + 16, eaten: false });
+                } else {
+                    pellets.push({ x: x * 32 + 16, y: y * 32 + 16, eaten: false });
                 }
             }
         }
