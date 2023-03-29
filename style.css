@@ -1,0 +1,21 @@
+#canvas {
+    border: 1px solid black;
+}
+
+.pacman {
+    fill: yellow;
+}
+
+.ghost {
+    fill: red;
+}
+
+.pellet {
+    fill: white;
+    stroke: black;
+}
+
+.power-pellet {
+    fill: white;
+    stroke: black;
+}
