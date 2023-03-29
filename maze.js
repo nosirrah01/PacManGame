@@ -46,3 +46,15 @@ function shuffle(array) {
 
 // Start the maze generation at a random position
 generateMaze(Math.floor(Math.random() * WIDTH), Math.floor(Math.random() * HEIGHT));
+
+// Add a function to draw the maze
+function drawMaze(ctx) {
+    ctx.fillStyle = 'blue';
+    for (let x = 0; x < WIDTH; x++) {
+        for (let y = 0; y < HEIGHT; y++) {
+            if (maze[x][y]) {
+                ctx.fillRect(x * 32, y * 32, 32, 32);
+            }
+        }
+    }
+}
