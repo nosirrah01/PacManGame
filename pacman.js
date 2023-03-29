@@ -21,26 +21,29 @@ document.addEventListener('keydown', (event) => {
 
 // Update Pac-Man's position and draw it on the canvas
 function updatePacman() {
+    let newX = pacman.x;
+    let newY = pacman.y;
+
     switch (pacman.direction) {
         case 'left':
-            pacman.x -= PACMAN_SPEED;
+            newX -= PACMAN_SPEED;
             break;
         case 'up':
-            pacman.y -= PACMAN_SPEED;
+            newY -= PACMAN_SPEED;
             break;
         case 'right':
-            pacman.x += PACMAN_SPEED;
+            newX += PACMAN_SPEED;
             break;
         case 'down':
-            pacman.y += PACMAN_SPEED;
+            newY += PACMAN_SPEED;
             break;
     }
 
-    // Prevent Pac-Man from going out of bounds
-    if (pacman.x < 0) pacman.x = 0;
-    if (pacman.y < 0) pacman.y = 0;
-    if (pacman.x > canvas.width - 32) pacman.x = canvas.width - 32;
-    if (pacman.y > canvas.height - 32) pacman.y = canvas.height - 32;
+    // Check if the new position is within the maze boundaries and not in a wall
+    if (newX >= 0 && newY >= 0 && newX <= canvas.width - 32 && newY <= canvas.height - 32 && !maze[Math.floor(newX / 32)][Math.floor(newY / 32)]) {
+        pacman.x = newX;
+        pacman.y = newY;
+    }
 
     // Draw Pac-Man on the canvas
     ctx.fillStyle = 'yellow';
@@ -49,4 +52,19 @@ function updatePacman() {
     ctx.lineTo(pacman.x + 16, pacman.y + 16);
     ctx.closePath();
     ctx.fill();
+
+    // Check for collisions with ghosts
+    for (let ghost of ghosts) {
+        if (distance(pacman.x + 16, pacman.y + 16, ghost.x + 16, ghost.y + 16) < 32) {
+            if (ghost.mode === 'frightened') {
+                ghost.x = 2 * 64;
+                ghost.y = 3 * 64;
+                score += 200;
+            } else {
+                // Pac-Man has been caught
+                console.log("Game over!");
+                // Add game over logic here, such as resetting the game state or showing a game over screen
+            }
+        }
+    }
 }
