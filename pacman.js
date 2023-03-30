@@ -1,21 +1,21 @@
 const PACMAN_SPEED = 2;
 let pacmanStartPosition = getRandomOpenPosition();
-let pacman = { x: pacmanStartPosition.x, y: pacmanStartPosition.y, direction: 'right' };
+let pacman = { x: pacmanStartPosition.x, y: pacmanStartPosition.y, direction: 'right', nextDirection: 'right' };
 
 // Handle keyboard events to move Pac-Man
 document.addEventListener('keydown', (event) => {
     switch (event.keyCode) {
         case 37: // left arrow
-            pacman.direction = 'left';
+            pacman.nextDirection = 'left';
             break;
         case 38: // up arrow
-            pacman.direction = 'up';
+            pacman.nextDirection = 'up';
             break;
         case 39: // right arrow
-            pacman.direction = 'right';
+            pacman.nextDirection = 'right';
             break;
         case 40: // down arrow
-            pacman.direction = 'down';
+            pacman.nextDirection = 'down';
             break;
     }
 });
@@ -37,6 +37,7 @@ function isCollision(newX, newY) {
 
 // Update Pac-Man's position and draw it on the canvas
 function updatePacman() {
+    // Calculate new position based on current direction
     let newX = pacman.x;
     let newY = pacman.y;
 
@@ -55,10 +56,34 @@ function updatePacman() {
             break;
     }
 
-    // Check if the new position is within the maze boundaries and not in a wall
+    // Check if Pac-Man can continue in the current direction
     if (!isCollision(newX, newY)) {
         pacman.x = newX;
         pacman.y = newY;
+    }
+
+    // Calculate new position based on the next direction
+    newX = pacman.x;
+    newY = pacman.y;
+
+    switch (pacman.nextDirection) {
+        case 'left':
+            newX -= PACMAN_SPEED;
+            break;
+        case 'up':
+            newY -= PACMAN_SPEED;
+            break;
+        case 'right':
+            newX += PACMAN_SPEED;
+            break;
+        case 'down':
+            newY += PACMAN_SPEED;
+            break;
+    }
+
+    // Check if Pac-Man can change to the next direction
+    if (!isCollision(newX, newY)) {
+        pacman.direction = pacman.nextDirection;
     }
 
     // Draw Pac-Man on the canvas
