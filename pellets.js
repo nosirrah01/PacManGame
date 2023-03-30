@@ -3,18 +3,19 @@ let powerPellets = [];
 
 // Create the pellets and power pellets
 function createPellets() {
-    for (let x = 0; x < maze.length; x++) {
-        for (let y = 0; y < maze[0].length; y++) {
+    for (let x = 1; x < maze.length - 1; x++) {
+        for (let y = 1; y < maze[0].length - 1; y++) {
             if (!maze[x][y]) {
-                if ((x === 1 && y === 1) || (x === 1 && y === HEIGHT - 2) || (x === WIDTH - 2 && y === 1) || (x === WIDTH - 2 && y === HEIGHT - 2)) {
-                    powerPellets.push({ x: x * 32 + 16, y: y * 32 + 16, eaten: false });
+                if ((x + y) % 10 === 0) {
+                    powerPellets.push({ x: x * 32 + 8, y: y * 32 + 8, eaten: false });
                 } else {
-                    pellets.push({ x: x * 32 + 16, y: y * 32 + 16, eaten: false });
+                    pellets.push({ x: x * 32 + 8, y: y * 32 + 8, eaten: false });
                 }
             }
         }
     }
 }
+
 
 
 // Check if Pac-Man has collected a pellet or power pellet
