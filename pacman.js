@@ -20,6 +20,16 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+function isWall(x, y) {
+    // Check if the given position is inside the canvas and if it's a wall in the maze
+    return x >= 0 && y >= 0 && x <= canvas.width - 32 && y <= canvas.height - 32 && maze[Math.floor(x / 32)][Math.floor(y / 32)];
+}
+
+function isCollision(newX, newY) {
+    // Check for collision in all four corners of the Pac-Man sprite
+    return isWall(newX, newY) || isWall(newX + 31, newY) || isWall(newX, newY + 31) || isWall(newX + 31, newY + 31);
+}
+
 // Update Pac-Man's position and draw it on the canvas
 function updatePacman() {
     let newX = pacman.x;
@@ -41,7 +51,7 @@ function updatePacman() {
     }
 
     // Check if the new position is within the maze boundaries and not in a wall
-    if (newX >= 0 && newY >= 0 && newX <= canvas.width - 32 && newY <= canvas.height - 32 && !maze[Math.floor(newX / 32)][Math.floor(newY / 32)]) {
+    if (!isCollision(newX, newY)) {
         pacman.x = newX;
         pacman.y = newY;
     }
