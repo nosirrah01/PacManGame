@@ -2,6 +2,18 @@ const GHOST_SPEED = 2;
 const ghostColors = ['red', 'pink', 'cyan', 'orange'];
 let ghosts = [];
 
+function getDeltaX(direction) {
+    if (direction === 'left') return -1;
+    if (direction === 'right') return 1;
+    return 0;
+}
+
+function getDeltaY(direction) {
+    if (direction === 'up') return -1;
+    if (direction === 'down') return 1;
+    return 0;
+}
+
 // Create the ghosts and their movement patterns
 function createGhosts() {
     for (let i = 0; i < ghostColors.length; i++) {
