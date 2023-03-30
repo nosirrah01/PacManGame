@@ -1,5 +1,6 @@
 const PACMAN_SPEED = 2;
-let pacman = { x: 0, y: 0, direction: 'right' };
+let pacmanStartPosition = getRandomOpenPosition();
+let pacman = { x: pacmanStartPosition.x, y: pacmanStartPosition.y, direction: 'right' };
 
 // Handle keyboard events to move Pac-Man
 document.addEventListener('keydown', (event) => {
