@@ -5,9 +5,10 @@ let ghosts = [];
 // Create the ghosts and their movement patterns
 function createGhosts() {
     for (let i = 0; i < ghostColors.length; i++) {
+        let startPosition = getRandomOpenPosition();
         ghosts.push({
-            x: (i + 1) * 64,
-            y: 3 * 64,
+            x: startPosition.x,
+            y: startPosition.y,
             color: ghostColors[i],
             targetX: null,
             targetY: null,
@@ -23,8 +24,37 @@ function updateGhosts() {
     for (let ghost of ghosts) {
         // Choose the ghost's target tile based on its mode
         if (ghost.mode === 'scatter') {
-            ghost.targetX = 0;
-            ghost.targetY = 0;
+            ghost.targetX = Math.floor(Math.random() * WIDTH) * 32;
+            ghost.targetY = Math.floor(Math.random() * HEIGHT) * 32;
+        } else if (ghost.mode === 'chase') {
+            switch (ghost.color) {
+                case 'red': // Blinky
+                    ghost.targetX = pacman.x;
+                    ghost.targetY = pacman.y;
+                    break;
+                case 'pink': // Pinky
+                    ghost.targetX = pacman.x + getDeltaX(pacman.direction) * 4 * 32;
+                    ghost.targetY = pacman.y + getDeltaY(pacman.direction) * 4 * 32;
+                    break;
+                case 'cyan': // Inky
+                    // Find Blinky's position
+                    let blinky = ghosts.find(g => g.color === 'red');
+                    let midX = pacman.x + getDeltaX(pacman.direction) * 2 * 32;
+                    let midY = pacman.y + getDeltaY(pacman.direction) * 2 * 32;
+                    ghost.targetX = blinky.x + 2 * (midX - blinky.x);
+                    ghost.targetY = blinky.y + 2 * (midY - blinky.y);
+                    break;
+                case 'orange': // Clyde
+                    let dist = distance(pacman.x, pacman.y, ghost.x, ghost.y);
+                    if (dist > 8 * 32) {
+                        ghost.targetX = pacman.x;
+                        ghost.targetY = pacman.y;
+                    } else {
+                        ghost.targetX = 0;
+                        ghost.targetY = HEIGHT * 32 - 32;
+                    }
+                    break;
+            }
         } else {
             // Implement other modes, such as chase or frightened
         }
