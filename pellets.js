@@ -62,3 +62,25 @@ function distance(x1, y1, x2, y2) {
     const dy = y2 - y1;
     return Math.sqrt(dx * dx + dy * dy);
 }
+
+function drawPellets() {
+    ctx.fillStyle = 'white';
+
+    for (let pellet of pellets) {
+        if (!pellet.eaten) {
+            ctx.beginPath();
+            ctx.arc(pellet.x + 8, pellet.y + 8, 4, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+        }
+    }
+
+    for (let powerPellet of powerPellets) {
+        if (!powerPellet.eaten) {
+            ctx.beginPath();
+            ctx.arc(powerPellet.x + 8, powerPellet.y + 8, 8, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+        }
+    }
+}

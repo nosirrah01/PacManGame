@@ -17,14 +17,19 @@ function update() {
     // Update and draw the ghosts
     updateGhosts();
 
-    // Check for collisions with pellets and update the score
+    // Update and draw the pellets and power pellets
+    drawPellets();
+
+    // Check if Pac-Man has collected a pellet or power pellet
     checkPellets();
-    scoreElement.innerText = score;
 
     // Update the scared timer for the ghosts
     updateScaredTimer();
 
-    // Request the next frame
+    // Update the score display
+    scoreElement.innerText = score;
+
+    // Repeat the update function
     requestAnimationFrame(update);
 }
 
