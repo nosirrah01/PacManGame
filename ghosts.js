@@ -2,6 +2,21 @@ const GHOST_SPEED = 2;
 const ghostColors = ['red', 'pink', 'cyan', 'orange'];
 let ghosts = [];
 
+function isWall(x, y) {
+    // Check if the given position is inside the canvas
+    if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) {
+        return true;
+    }
+
+    // Check if it's a wall in the maze
+    return maze[Math.floor(x / 32)][Math.floor(y / 32)];
+}
+
+function isGhostCollision(newX, newY) {
+    // Check for collision in all four corners of the ghost sprite
+    return isWall(newX, newY) || isWall(newX + 31, newY) || isWall(newX, newY + 31) || isWall(newX + 31, newY + 31);
+}
+
 function getDeltaX(direction) {
     if (direction === 'left') return -1;
     if (direction === 'right') return 1;
@@ -82,20 +97,29 @@ function updateGhosts() {
             ghost.direction = getDirection(vx, vy);
         }
 
-        // Update the ghost's position based on its direction and speed
+        // Calculate new position based on ghost's direction and speed
+        let newX = ghost.x;
+        let newY = ghost.y;
+
         switch (ghost.direction) {
             case 'left':
-                ghost.x -= GHOST_SPEED;
+                newX -= GHOST_SPEED;
                 break;
             case 'up':
-                ghost.y -= GHOST_SPEED;
+                newY -= GHOST_SPEED;
                 break;
             case 'right':
-                ghost.x += GHOST_SPEED;
+                newX += GHOST_SPEED;
                 break;
             case 'down':
-                ghost.y += GHOST_SPEED;
+                newY += GHOST_SPEED;
                 break;
+        }
+
+        // Check if the ghost can continue in the current direction
+        if (!isGhostCollision(newX, newY)) {
+            ghost.x = newX;
+            ghost.y = newY;
         }
 
         // Draw the ghost on the canvas
