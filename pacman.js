@@ -98,8 +98,8 @@ function updatePacman() {
     for (let ghost of ghosts) {
         if (distance(pacman.x + 16, pacman.y + 16, ghost.x + 16, ghost.y + 16) < 32) {
             if (ghost.mode === 'frightened') {
-                ghost.x = 2 * 64;
-                ghost.y = 3 * 64;
+                ghost.x = 2 * 64 + 32;
+                ghost.y = 3 * 64 + 32;
                 score += 200;
             } else {
                 // Pac-Man has been caught
