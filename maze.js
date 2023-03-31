@@ -1,4 +1,4 @@
-const WIDTH = 20;
+const WIDTH = 21;
 const HEIGHT = 15;
 
 const maze = new Array(WIDTH);
@@ -20,8 +20,13 @@ function generateMaze(x, y) {
         const nx = x + d.dx;
         const ny = y + d.dy;
 
-        // Check if the new position is within the maze boundaries
-        if (nx < 1 || nx >= WIDTH - 1 || ny < 1 || ny >= HEIGHT - 1 || !maze[nx][ny]) {
+        // Skip if it's on the edge or if the next position is already visited
+        if (nx <= 0 || nx >= WIDTH - 1 || ny <= 0 || ny >= HEIGHT - 1 || !maze[nx][ny]) {
+            continue;
+        }
+
+        // Skip if it's the right edge (to keep thickness at 1)
+        if (nx === WIDTH - 2 && x === WIDTH - 3) {
             continue;
         }
 
@@ -42,8 +47,8 @@ function shuffle(array) {
     return array;
 }
 
-// Start the maze generation at a random even position that's not on the edges
-generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+// Start the maze generation at a random even position, ensuring it's at least two tiles away from the right edge
+generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 2, Math.floor(Math.random() * (HEIGHT / 2)) * 2);
 
 function drawMaze(ctx) {
     // Fill the entire canvas with black first
