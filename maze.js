@@ -1,5 +1,5 @@
-const WIDTH = 21;
-const HEIGHT = 15;
+const WIDTH = 27;
+const HEIGHT = 31;
 
 const maze = new Array(WIDTH);
 for (let i = 0; i < WIDTH; i++) {
@@ -47,8 +47,8 @@ function shuffle(array) {
     return array;
 }
 
-// Start the maze generation at a random even position, ensuring it's at least two tiles away from the right edge
-generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 2, Math.floor(Math.random() * (HEIGHT / 2)) * 2);
+// Start the maze generation at a random odd position that's not on the edges
+generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
 
 function drawMaze(ctx) {
     // Fill the entire canvas with black first
