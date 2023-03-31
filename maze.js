@@ -20,7 +20,7 @@ function generateMaze(x, y) {
         const nx = x + d.dx;
         const ny = y + d.dy;
 
-        if (nx < 0 || nx >= WIDTH || ny < 0 || ny >= HEIGHT || !maze[nx][ny]) {
+        if (nx <= 0 || nx >= WIDTH - 1 || ny <= 0 || ny >= HEIGHT - 1 || !maze[nx][ny]) {
             continue;
         }
 
@@ -41,8 +41,8 @@ function shuffle(array) {
     return array;
 }
 
-// Start the maze generation at a random even position
-generateMaze(Math.floor(Math.random() * (WIDTH / 2)) * 2, Math.floor(Math.random() * (HEIGHT / 2)) * 2);
+// Start the maze generation at a random even position that's not on the edges
+generateMaze(Math.floor(Math.random() * ((WIDTH - 2) / 2)) * 2 + 2, Math.floor(Math.random() * ((HEIGHT - 2) / 2)) * 2 + 2);
 
 function drawMaze(ctx) {
     // Fill the entire canvas with black first
