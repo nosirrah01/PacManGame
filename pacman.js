@@ -1,6 +1,15 @@
 const PACMAN_SPEED = 2;
 let pacmanStartPosition = getRandomOpenPosition();
-let pacman = { x: pacmanStartPosition.x, y: pacmanStartPosition.y, direction: 'right', nextDirection: 'right' };
+let pacman = {
+    x: pacmanStartPosition.x,
+    y: pacmanStartPosition.y,
+    prevX: pacmanStartPosition.x,
+    prevY: pacmanStartPosition.y,
+    direction: 'right',
+    nextDirection: 'right',
+    mouthAngle: 0,
+};
+let lastMouthUpdateTime = 0;
 
 // Handle keyboard events to move Pac-Man
 document.addEventListener('keydown', (event) => {
@@ -86,10 +95,19 @@ function updatePacman() {
         pacman.direction = pacman.nextDirection;
     }
 
-    // Draw Pac-Man on the canvas
+    // Update the mouth angle smoothly based on elapsed time
+    const currentTime = performance.now();
+    const elapsedTime = currentTime - lastMouthUpdateTime;
+    const angleRange = Math.PI;
+    const animationTime = 1000;//1000 is 1 second
+
+    pacman.mouthAngle = angleRange * (Math.sin((currentTime * 3 * Math.PI) / animationTime - Math.PI / 2) * 0.25 + 0.25);
+    lastMouthUpdateTime = currentTime;
+
+    // Draw Pac-Man on the canvas with the updated mouth angle
     ctx.fillStyle = 'yellow';
     ctx.beginPath();
-    ctx.arc(pacman.x + 16, pacman.y + 16, 16, 0.25 * Math.PI, 1.75 * Math.PI);
+    ctx.arc(pacman.x + 16, pacman.y + 16, 16, (0.25 - pacman.mouthAngle / 4) * Math.PI, (1.75 + pacman.mouthAngle / 4) * Math.PI);
     ctx.lineTo(pacman.x + 16, pacman.y + 16);
     ctx.closePath();
     ctx.fill();
@@ -109,3 +127,4 @@ function updatePacman() {
         }
     }
 }
+
