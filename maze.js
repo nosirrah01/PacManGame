@@ -3,7 +3,17 @@ const HEIGHT = 15;
 
 const maze = new Array(WIDTH);
 for (let i = 0; i < WIDTH; i++) {
-    maze[i] = new Array(HEIGHT).fill(true);
+    maze[i] = new Array(HEIGHT).fill(false);
+}
+
+// Initialize the outer edges with walls
+for (let i = 0; i < WIDTH; i++) {
+    maze[i][0] = true;
+    maze[i][HEIGHT - 1] = true;
+}
+for (let i = 0; i < HEIGHT; i++) {
+    maze[0][i] = true;
+    maze[WIDTH - 1][i] = true;
 }
 
 function generateMaze(x, y) {
@@ -42,7 +52,7 @@ function shuffle(array) {
 }
 
 // Start the maze generation at a random even position that's not on the edges
-generateMaze(Math.floor(Math.random() * ((WIDTH - 2) / 2)) * 2 + 2, Math.floor(Math.random() * ((HEIGHT - 2) / 2)) * 2 + 2);
+generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 2, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 2);
 
 function drawMaze(ctx) {
     // Fill the entire canvas with black first
