@@ -3,7 +3,7 @@ const HEIGHT = 15;
 
 const maze = new Array(WIDTH);
 for (let i = 0; i < WIDTH; i++) {
-    maze[i] = new Array(HEIGHT).fill(false);
+    maze[i] = new Array(HEIGHT).fill(true);
 }
 
 function generateMaze(x, y) {
