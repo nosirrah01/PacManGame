@@ -154,8 +154,35 @@ function updateGhosts() {
 
         // Draw the ghost on the canvas
         ctx.fillStyle = ghost.mode === 'frightened' ? 'rgb(0, 128, 255)' : ghost.color;
+
+        // Draw the ghost's body
         ctx.beginPath();
-        ctx.arc(ghost.x + 16, ghost.y + 16, 16, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + 16, ghost.y + 16, 16, Math.PI, 0, false);
+        ctx.lineTo(ghost.x + 32, ghost.y + 32);
+        ctx.lineTo(ghost.x + 28, ghost.y + 24);
+        ctx.lineTo(ghost.x + 24, ghost.y + 32);
+        ctx.lineTo(ghost.x + 20, ghost.y + 24);
+        ctx.lineTo(ghost.x + 16, ghost.y + 32);
+        ctx.lineTo(ghost.x + 12, ghost.y + 24);
+        ctx.lineTo(ghost.x + 8, ghost.y + 32);
+        ctx.lineTo(ghost.x + 4, ghost.y + 24);
+        ctx.lineTo(ghost.x, ghost.y + 32);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw the ghost's eyes
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(ghost.x + 11, ghost.y + 12, 3, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + 21, ghost.y + 12, 3, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.fill();
+
+        // Draw the ghost's pupils
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(ghost.x + 11, ghost.y + 12, 1, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + 21, ghost.y + 12, 1, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.fill();
     }
