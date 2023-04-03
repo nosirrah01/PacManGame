@@ -153,7 +153,7 @@ function updateGhosts() {
         }
 
         // Draw the ghost on the canvas
-        ctx.fillStyle = ghost.mode === 'frightened' ? 'darkblue' : ghost.color;
+        ctx.fillStyle = ghost.mode === 'frightened' ? 'rgb(0, 128, 255)' : ghost.color;
         ctx.beginPath();
         ctx.arc(ghost.x + 16, ghost.y + 16, 16, 0, 2 * Math.PI);
         ctx.closePath();
