@@ -3,12 +3,13 @@ const ghostColors = ['red', 'pink', 'cyan', 'orange'];
 
 // Constants for ghost drawing
 const GHOST_RADIUS = 16;
-const GHOST_EYE_RADIUS = 4.75;
-const GHOST_PUPIL_RADIUS = 2;
+const GHOST_EYE_RADIUS = 5.5;
+const GHOST_PUPIL_RADIUS = 2.5;
 const GHOST_EYE_X_OFFSET = 11;
 const GHOST_EYE_Y_OFFSET = 12;
 const GHOST_PUPIL_X_OFFSET = 11;
 const GHOST_PUPIL_Y_OFFSET = 12;
+const GHOST_EYE_DISTANCE = 15; // You can adjust this value to change the distance between the eyes
 
 let ghosts = [];
 
@@ -183,17 +184,15 @@ function updateGhosts() {
         // Draw the ghost's eyes
         ctx.fillStyle = 'white';
         ctx.beginPath();
-        ctx.arc(ghost.x + GHOST_EYE_X_OFFSET, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
-        ctx.arc(ghost.x + GHOST_EYE_X_OFFSET + 10, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
-        ctx.closePath();
+        ctx.arc(ghost.x + GHOST_RADIUS - GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_RADIUS + GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
         ctx.fill();
 
         // Draw the ghost's pupils
         ctx.fillStyle = 'blue';
         ctx.beginPath();
-        ctx.arc(ghost.x + GHOST_PUPIL_X_OFFSET, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
-        ctx.arc(ghost.x + GHOST_PUPIL_X_OFFSET + 10, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
-        ctx.closePath();
+        ctx.arc(ghost.x + GHOST_RADIUS - GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_RADIUS + GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
         ctx.fill();
     }
 }
