@@ -97,7 +97,20 @@ function updateGhosts() {
         if (dist > 0) {
             const possibleDirections = ['left', 'right', 'up', 'down'].filter(dir => {
                 const oppositeDir = getOppositeDirection(ghost.direction);
-                return dir !== oppositeDir && !isGhostCollision(ghost.x + getDeltaX(dir) * GHOST_SPEED, ghost.y + getDeltaY(dir) * GHOST_SPEED);
+                const newX = ghost.x + getDeltaX(dir) * GHOST_SPEED;
+                const newY = ghost.y + getDeltaY(dir) * GHOST_SPEED;
+
+                if (!isGhostCollision(newX, newY)) {
+                    // Only allow to move in the opposite direction if it's a dead end
+                    if (dir === oppositeDir) {
+                        const otherDirections = ['left', 'right', 'up', 'down'].filter(d => d !== dir);
+                        const canMoveOtherWays = otherDirections.some(d => !isGhostCollision(ghost.x + getDeltaX(d) * GHOST_SPEED, ghost.y + getDeltaY(d) * GHOST_SPEED));
+
+                        return !canMoveOtherWays;
+                    }
+                    return true;
+                }
+                return false;
             });
 
             for (const dir of possibleDirections) {
