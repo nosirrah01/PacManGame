@@ -14,11 +14,11 @@ function update() {
     // Update and draw Pac-Man
     updatePacman();
 
-    // Update and draw the ghosts
-    updateGhosts();
-
     // Update and draw the pellets and power pellets
     drawPellets();
+
+    // Update and draw the ghosts
+    updateGhosts();
 
     // Check if Pac-Man has collected a pellet or power pellet
     checkPellets();
@@ -32,6 +32,7 @@ function update() {
     // Repeat the update function
     requestAnimationFrame(update);
 }
+
 
 // Initialize game components
 createGhosts();
