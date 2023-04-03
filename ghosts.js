@@ -91,11 +91,28 @@ function updateGhosts() {
         const dy = ghost.targetY - ghost.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
+        let bestDist = Infinity;
+        let bestDirection = ghost.direction;
+
         if (dist > 0) {
-            const vx = dx / dist;
-            const vy = dy / dist;
-            ghost.direction = getDirection(vx, vy);
+            const possibleDirections = ['left', 'right', 'up', 'down'].filter(dir => {
+                const oppositeDir = getOppositeDirection(ghost.direction);
+                return dir !== oppositeDir && !isGhostCollision(ghost.x + getDeltaX(dir) * GHOST_SPEED, ghost.y + getDeltaY(dir) * GHOST_SPEED);
+            });
+
+            for (const dir of possibleDirections) {
+                const testX = ghost.x + getDeltaX(dir) * GHOST_SPEED;
+                const testY = ghost.y + getDeltaY(dir) * GHOST_SPEED;
+                const testDist = Math.sqrt(Math.pow(testX - ghost.targetX, 2) + Math.pow(testY - ghost.targetY, 2));
+
+                if (testDist < bestDist) {
+                    bestDist = testDist;
+                    bestDirection = dir;
+                }
+            }
         }
+
+        ghost.direction = bestDirection;
 
         // Calculate new position based on ghost's direction and speed
         let newX = ghost.x;
@@ -128,6 +145,19 @@ function updateGhosts() {
         ctx.arc(ghost.x + 16, ghost.y + 16, 16, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.fill();
+    }
+}
+
+function getOppositeDirection(direction) {
+    switch (direction) {
+        case 'left':
+            return 'right';
+        case 'right':
+            return 'left';
+        case 'up':
+            return 'down';
+        case 'down':
+            return 'up';
     }
 }
 
