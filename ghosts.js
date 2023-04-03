@@ -1,5 +1,15 @@
 const GHOST_SPEED = 2;
 const ghostColors = ['red', 'pink', 'cyan', 'orange'];
+
+// Constants for ghost drawing
+const GHOST_RADIUS = 16;
+const GHOST_EYE_RADIUS = 4.75;
+const GHOST_PUPIL_RADIUS = 2;
+const GHOST_EYE_X_OFFSET = 11;
+const GHOST_EYE_Y_OFFSET = 12;
+const GHOST_PUPIL_X_OFFSET = 11;
+const GHOST_PUPIL_Y_OFFSET = 12;
+
 let ghosts = [];
 
 function isWall(x, y) {
@@ -157,7 +167,7 @@ function updateGhosts() {
 
         // Draw the ghost's body
         ctx.beginPath();
-        ctx.arc(ghost.x + 16, ghost.y + 16, 16, Math.PI, 0, false);
+        ctx.arc(ghost.x + GHOST_RADIUS, ghost.y + GHOST_RADIUS, GHOST_RADIUS, Math.PI, 0, false);
         ctx.lineTo(ghost.x + 32, ghost.y + 32);
         ctx.lineTo(ghost.x + 28, ghost.y + 24);
         ctx.lineTo(ghost.x + 24, ghost.y + 32);
@@ -173,16 +183,16 @@ function updateGhosts() {
         // Draw the ghost's eyes
         ctx.fillStyle = 'white';
         ctx.beginPath();
-        ctx.arc(ghost.x + 11, ghost.y + 12, 3, 0, 2 * Math.PI);
-        ctx.arc(ghost.x + 21, ghost.y + 12, 3, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_EYE_X_OFFSET, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_EYE_X_OFFSET + 10, ghost.y + GHOST_EYE_Y_OFFSET, GHOST_EYE_RADIUS, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.fill();
 
         // Draw the ghost's pupils
         ctx.fillStyle = 'blue';
         ctx.beginPath();
-        ctx.arc(ghost.x + 11, ghost.y + 12, 1, 0, 2 * Math.PI);
-        ctx.arc(ghost.x + 21, ghost.y + 12, 1, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_PUPIL_X_OFFSET, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
+        ctx.arc(ghost.x + GHOST_PUPIL_X_OFFSET + 10, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
         ctx.closePath();
         ctx.fill();
     }
