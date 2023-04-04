@@ -33,6 +33,30 @@ function update() {
     requestAnimationFrame(update);
 }
 
+function resetGameState() {
+    // Regenerate the maze
+    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+
+    // Reset Pac-Man's position
+    pacmanStartPosition = getRandomOpenPosition();
+    pacman.x = pacmanStartPosition.x;
+    pacman.y = pacmanStartPosition.y;
+
+    // Reset ghosts' positions
+    ghosts.forEach((ghost, i) => {
+        let startPosition = getRandomOpenPosition();
+        ghost.x = startPosition.x;
+        ghost.y = startPosition.y;
+        ghost.direction = 'left';
+        ghost.mode = 'scatter';
+    });
+
+    // Reset pellets and power pellets
+    pellets = [];
+    powerPellets = [];
+    createPellets();
+}
+
 
 // Initialize game components
 createGhosts();

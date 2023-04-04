@@ -1,3 +1,4 @@
+//default speed is 2. changes to this should be temporary
 const PACMAN_SPEED = 2;
 let pacmanStartPosition = getRandomOpenPosition();
 let pacman = {

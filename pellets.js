@@ -22,6 +22,7 @@ function checkPellets() {
         if (!pellet.eaten && distance(pacman.x + 16, pacman.y + 16, pellet.x, pellet.y) < 16) {
             pellet.eaten = true;
             score += 10;
+            checkAllPelletsEaten();
         }
     }
 
@@ -30,7 +31,58 @@ function checkPellets() {
             powerPellet.eaten = true;
             score += 50;
             scareGhosts();
+            checkAllPelletsEaten();
         }
+    }
+}
+
+function checkAllPelletsEaten() {
+    let allPelletsEaten = true;
+
+    for (let pellet of pellets) {
+        if (!pellet.eaten) {
+            allPelletsEaten = false;
+            break;
+        }
+    }
+
+    if (allPelletsEaten) {
+        for (let powerPellet of powerPellets) {
+            if (!powerPellet.eaten) {
+                allPelletsEaten = false;
+                break;
+            }
+        }
+    }
+
+    if (allPelletsEaten) {
+        levelUp();
+    }
+}
+
+function levelUp() {
+    console.log('Level up!');
+
+    // Regenerate the maze
+    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+
+    // Recreate pellets and power pellets
+    pellets = [];
+    powerPellets = [];
+    createPellets();
+
+    // Reset Pac-Man's position
+    pacmanStartPosition = getRandomOpenPosition();
+    pacman.x = pacmanStartPosition.x;
+    pacman.y = pacmanStartPosition.y;
+    pacman.prevX = pacmanStartPosition.x;
+    pacman.prevY = pacmanStartPosition.y;
+
+    // Reset ghosts' positions
+    for (let ghost of ghosts) {
+        ghost.x = 2 * 64 + 32;
+        ghost.y = 3 * 64 + 32;
+        ghost.mode = 'scatter';
     }
 }
 
