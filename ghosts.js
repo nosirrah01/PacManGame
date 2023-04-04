@@ -13,16 +13,6 @@ const GHOST_EYE_DISTANCE = 15; // You can adjust this value to change the distan
 
 let ghosts = [];
 
-function isWall(x, y) {
-    // Check if the given position is inside the canvas
-    if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) {
-        return true;
-    }
-
-    // Check if it's a wall in the maze
-    return maze[Math.floor(x / 32)][Math.floor(y / 32)];
-}
-
 function isGhostCollision(newX, newY) {
     // Check for collision in all four corners of the ghost sprite
     return isWall(newX, newY) || isWall(newX + 31, newY) || isWall(newX, newY + 31) || isWall(newX + 31, newY + 31);
