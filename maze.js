@@ -56,12 +56,3 @@ function drawMaze(ctx) {
         }
     }
 }
-
-function getRandomOpenPosition() {
-    let x, y;
-    do {
-        x = Math.floor(Math.random() * WIDTH);
-        y = Math.floor(Math.random() * HEIGHT);
-    } while (maze[x][y]);
-    return { x: x * 32, y: y * 32 };
-}

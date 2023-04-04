@@ -8,6 +8,15 @@ function isWall(x, y) {
     return maze[Math.floor(x / 32)][Math.floor(y / 32)];
 }
 
+function getRandomOpenPosition() {
+    let x, y;
+    do {
+        x = Math.floor(Math.random() * WIDTH);
+        y = Math.floor(Math.random() * HEIGHT);
+    } while (maze[x][y]);
+    return { x: x * 32, y: y * 32 };
+}
+
 // Helper function to calculate the distance between two points
 function distance(x1, y1, x2, y2) {
     const dx = x2 - x1;
