@@ -12,34 +12,6 @@ let pacman = {
 };
 let lastMouthUpdateTime = 0;
 
-// Handle keyboard events to move Pac-Man
-document.addEventListener('keydown', (event) => {
-    switch (event.keyCode) {
-        case 37: // left arrow
-            pacman.nextDirection = 'left';
-            break;
-        case 38: // up arrow
-            pacman.nextDirection = 'up';
-            break;
-        case 39: // right arrow
-            pacman.nextDirection = 'right';
-            break;
-        case 40: // down arrow
-            pacman.nextDirection = 'down';
-            break;
-    }
-});
-
-function isWall(x, y) {
-    // Check if the given position is inside the canvas
-    if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) {
-        return true;
-    }
-
-    // Check if it's a wall in the maze
-    return maze[Math.floor(x / 32)][Math.floor(y / 32)];
-}
-
 function isCollision(newX, newY) {
     // Check for collision in all four corners of the Pac-Man sprite
     return isWall(newX, newY) || isWall(newX + 31, newY) || isWall(newX, newY + 31) || isWall(newX + 31, newY + 31);
