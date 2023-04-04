@@ -40,7 +40,7 @@ function checkPellets() {
 function scareGhosts() {
     for (let ghost of ghosts) {
         ghost.mode = 'frightened';
-        ghost.scaredTimer = 100;
+        ghost.scaredTimer = 1000;
     }
 }
 
