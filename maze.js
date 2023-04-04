@@ -39,14 +39,6 @@ function generateMaze(x, y) {
     }
 }
 
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
 // Start the maze generation at a random odd position that's not on the edges
 generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
 
