@@ -60,32 +60,6 @@ function checkAllPelletsEaten() {
     }
 }
 
-function levelUp() {
-    console.log('Level up!');
-
-    // Regenerate the maze
-    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
-
-    // Recreate pellets and power pellets
-    pellets = [];
-    powerPellets = [];
-    createPellets();
-
-    // Reset Pac-Man's position
-    pacmanStartPosition = getRandomOpenPosition();
-    pacman.x = pacmanStartPosition.x;
-    pacman.y = pacmanStartPosition.y;
-    pacman.prevX = pacmanStartPosition.x;
-    pacman.prevY = pacmanStartPosition.y;
-
-    // Reset ghosts' positions
-    for (let ghost of ghosts) {
-        ghost.x = 2 * 64 + 32;
-        ghost.y = 3 * 64 + 32;
-        ghost.mode = 'scatter';
-    }
-}
-
 // Scare the ghosts for a short period of time
 function scareGhosts() {
     for (let ghost of ghosts) {
