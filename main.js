@@ -57,7 +57,6 @@ function resetGameState() {
     createPellets();
 }
 
-
 // Initialize game components
 createGhosts();
 createPellets();
