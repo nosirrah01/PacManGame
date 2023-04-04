@@ -2,7 +2,7 @@ function levelUp() {
     console.log('Level up!');
 
     // Regenerate the maze
-    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+    initMaze();
 
     // Recreate pellets and power pellets
     pellets = [];

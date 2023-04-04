@@ -1,3 +1,5 @@
+initMaze();
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
@@ -35,7 +37,7 @@ function update() {
 
 function resetGameState() {
     // Regenerate the maze
-    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+    initMaze();
 
     // Reset Pac-Man's position
     pacmanStartPosition = getRandomOpenPosition();

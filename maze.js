@@ -39,8 +39,11 @@ function generateMaze(x, y) {
     }
 }
 
-// Start the maze generation at a random odd position that's not on the edges
-generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+function initMaze() {
+    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+}
+
+initMaze();
 
 function drawMaze(ctx) {
     // Fill the entire canvas with black first
