@@ -16,8 +16,6 @@ function createPellets() {
     }
 }
 
-
-
 // Check if Pac-Man has collected a pellet or power pellet
 function checkPellets() {
     for (let pellet of pellets) {
