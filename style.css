@@ -8,9 +8,11 @@
 }
 
 #score-container {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Press Start 2P', Arial, sans-serif;
     font-size: 18px;
     margin-bottom: 10px;
+    padding: 10px;
+    color: black;
 }
 
 .pacman {
@@ -43,7 +45,7 @@
 }
 
 #game-over-container h1 {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Press Start 2P', Arial, sans-serif;
     font-size: 48px;
     font-weight: bold;
     text-align: center;
