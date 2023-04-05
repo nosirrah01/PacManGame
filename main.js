@@ -19,7 +19,7 @@ function update() {
             resetGameState();
             gameOver = false; // Reset the game over flag
             requestAnimationFrame(update); // Restart the update loop
-        }, 3000);
+        }, 4000);
         return; // Exit the update loop
     }
 

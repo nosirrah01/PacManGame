@@ -28,12 +28,21 @@
 
 #game-over-container {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 864px; /* match the canvas width */
+    height: 992px; /* match the canvas height */
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
 }
+
+    #game-over-container h1 {
+        font-family: 'Arial', sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+    }
