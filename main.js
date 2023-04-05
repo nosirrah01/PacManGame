@@ -55,6 +55,8 @@ function resetGameState() {
     // Reset score
     score = 0;
     document.getElementById("score").textContent = score;
+
+    console.log("Game State Reset");
 }
 
 // Initialize game components

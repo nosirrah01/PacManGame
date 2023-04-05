@@ -95,7 +95,19 @@ function updatePacman() {
             } else {
                 // Pac-Man has been caught
                 console.log("Game over!");
-                // Add game over logic here, such as resetting the game state or showing a game over screen
+
+                // Show the game over screen
+                const gameOverContainer = document.getElementById("game-over-container");
+                gameOverContainer.style.display = "block";
+
+                // Pause for 5 seconds
+                setTimeout(() => {
+                    // Hide the game over screen
+                    gameOverContainer.style.display = "none";
+
+                    // Reset game state
+                    resetGameState();
+                }, 5000);
             }
         }
     }
