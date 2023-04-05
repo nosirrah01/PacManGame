@@ -187,6 +187,22 @@ function updateGhosts() {
     }
 }
 
+function respawnGhosts() {
+    // Clear the current ghosts array
+    ghosts = [];
+
+    // Recreate the ghosts and their movement patterns
+    createGhosts();
+
+    // Reset ghosts' positions
+    for (let ghost of ghosts) {
+        let startPosition = getRandomOpenPosition();
+        ghost.x = startPosition.x;
+        ghost.y = startPosition.y;
+        ghost.mode = 'scatter';
+    }
+}
+
 function getOppositeDirection(direction) {
     switch (direction) {
         case 'left':

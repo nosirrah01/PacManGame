@@ -44,14 +44,8 @@ function resetGameState() {
     pacman.x = pacmanStartPosition.x;
     pacman.y = pacmanStartPosition.y;
 
-    // Reset ghosts' positions
-    ghosts.forEach((ghost, i) => {
-        let startPosition = getRandomOpenPosition();
-        ghost.x = startPosition.x;
-        ghost.y = startPosition.y;
-        ghost.direction = 'left';
-        ghost.mode = 'scatter';
-    });
+    // Respawn ghosts
+    respawnGhosts();
 
     // Reset pellets and power pellets
     pellets = [];

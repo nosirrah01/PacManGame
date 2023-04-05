@@ -86,11 +86,11 @@ function updatePacman() {
     ctx.fill();
 
     // Check for collisions with ghosts
-    for (let ghost of ghosts) {
+    for (let i = ghosts.length - 1; i >= 0; i--) {
+        const ghost = ghosts[i];
         if (distance(pacman.x + 16, pacman.y + 16, ghost.x + 16, ghost.y + 16) < 32) {
             if (ghost.mode === 'frightened') {
-                ghost.x = 2 * 64 + 32;
-                ghost.y = 3 * 64 + 32;
+                ghosts.splice(i, 1); // Remove the ghost from the array
                 score += 200;
             } else {
                 // Pac-Man has been caught

@@ -16,11 +16,6 @@ function levelUp() {
     pacman.prevX = pacmanStartPosition.x;
     pacman.prevY = pacmanStartPosition.y;
 
-    // Reset ghosts' positions
-    for (let ghost of ghosts) {
-        let startPosition = getRandomOpenPosition();
-        ghost.x = startPosition.x;
-        ghost.y = startPosition.y;
-        ghost.mode = 'scatter';
-    }
+    // Respawn ghosts
+    respawnGhosts();
 }
