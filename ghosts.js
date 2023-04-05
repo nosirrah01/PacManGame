@@ -154,7 +154,7 @@ function updateGhosts() {
         }
 
         // Draw the ghost on the canvas
-        ctx.fillStyle = ghost.mode === 'frightened' ? 'rgb(0, 128, 255)' : ghost.color;
+        ctx.fillStyle = ghost.mode === 'frightened' ? 'rgb(60, 60, 255)' : ghost.color;
 
         // Draw the ghost's body
         ctx.beginPath();

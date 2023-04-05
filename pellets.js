@@ -81,7 +81,8 @@ function updateScaredTimer() {
 }
 
 function drawPellets() {
-    ctx.fillStyle = 'white';
+    //ctx.fillStyle = 'white';
+    ctx.fillStyle = 'rgb(230, 201, 183)';
 
     for (let pellet of pellets) {
         if (!pellet.eaten) {

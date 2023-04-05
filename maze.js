@@ -50,7 +50,7 @@ function drawMaze(ctx) {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, WIDTH * 32, HEIGHT * 32);
 
-    ctx.fillStyle = 'blue';
+    ctx.fillStyle = 'rgb(0, 0, 110)';
     for (let x = 0; x < WIDTH; x++) {
         for (let y = 0; y < HEIGHT; y++) {
             if (maze[x][y]) {
