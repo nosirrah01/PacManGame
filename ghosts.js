@@ -169,7 +169,7 @@ function updateGhosts() {
         ctx.arc(ghost.x + GHOST_RADIUS, ghost.y + GHOST_RADIUS, GHOST_RADIUS, Math.PI, 0, false);
         ctx.lineTo(ghost.x + 32, ghost.y + 32);
 
-        const tailOffset = ghost.tailState * 2;
+        const tailOffset = ghost.tailState * 2; // Reducing the value to 2 to limit the upward movement
         ctx.lineTo(ghost.x + 28, ghost.y + 24 - tailOffset);
         ctx.lineTo(ghost.x + 24, ghost.y + 32);
         ctx.lineTo(ghost.x + 20, ghost.y + 24 + tailOffset);
