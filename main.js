@@ -3,6 +3,11 @@ initMaze();
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
+const gameOverContainer = document.getElementById('game-over-container');
+
+// Set game over container width and height to match the canvas
+gameOverContainer.style.width = (canvas.width + 2) + 'px';
+gameOverContainer.style.height = (canvas.height + 2) + 'px';
 
 let score = 0;
 let gameOver = false;

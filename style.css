@@ -35,8 +35,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 864px; /* match the canvas width */
-    height: 992px; /* match the canvas height */
     background-color: black;
     display: flex;
     align-items: center;
