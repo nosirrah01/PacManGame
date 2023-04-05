@@ -57,6 +57,10 @@ function resetGameState() {
     pacman.x = pacmanStartPosition.x;
     pacman.y = pacmanStartPosition.y;
 
+    // Reset Pac-Man's direction
+    pacman.direction = 'right';
+    pacman.nextDirection = 'right';
+
     // Respawn ghosts
     respawnGhosts();
 
