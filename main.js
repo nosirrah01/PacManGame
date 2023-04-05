@@ -51,6 +51,10 @@ function resetGameState() {
     pellets = [];
     powerPellets = [];
     createPellets();
+
+    // Reset score
+    score = 0;
+    document.getElementById("score").textContent = score;
 }
 
 // Initialize game components
