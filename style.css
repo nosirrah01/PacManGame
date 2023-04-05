@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 #game-area {
     position: relative;
     display: inline-block;
@@ -12,7 +16,7 @@
     font-size: 18px;
     margin-bottom: 10px;
     padding: 10px;
-    color: black;
+    color: white;
 }
 
 .pacman {
