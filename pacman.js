@@ -89,25 +89,15 @@ function updatePacman() {
     for (let i = ghosts.length - 1; i >= 0; i--) {
         const ghost = ghosts[i];
         if (distance(pacman.x + 16, pacman.y + 16, ghost.x + 16, ghost.y + 16) < 32) {
-            if (ghost.mode === 'frightened') {
-                ghosts.splice(i, 1); // Remove the ghost from the array
-                score += 200;
-            } else {
-                // Pac-Man has been caught
-                console.log("Game over!");
-
-                // Show the game over screen
-                const gameOverContainer = document.getElementById("game-over-container");
-                gameOverContainer.style.display = "block";
-
-                // Pause for 5 seconds
-                setTimeout(() => {
-                    // Hide the game over screen
-                    gameOverContainer.style.display = "none";
-
-                    // Reset game state
-                    resetGameState();
-                }, 5000);
+            if (distance(pacman.x + 16, pacman.y + 16, ghost.x + 16, ghost.y + 16) < 32) {
+                if (ghost.mode === 'frightened') {
+                    ghosts.splice(i, 1); // Remove the ghost from the array
+                    score += 200;
+                } else {
+                    // Pac-Man has been caught
+                    console.log("Game over!");
+                    gameOver = true; // Set the flag
+                }
             }
         }
     }

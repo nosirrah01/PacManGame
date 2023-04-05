@@ -5,10 +5,23 @@ const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 
 let score = 0;
+let gameOver = false;
 
 function update() {
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // If the game is over, show the game over screen and reset the game state
+    if (gameOver) {
+        document.getElementById("game-over-container").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("game-over-container").style.display = "none";
+            resetGameState();
+            gameOver = false; // Reset the game over flag
+            requestAnimationFrame(update); // Restart the update loop
+        }, 3000);
+        return; // Exit the update loop
+    }
 
     // Update and draw the maze
     drawMaze(ctx);
