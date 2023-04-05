@@ -81,6 +81,16 @@ function resetGameState() {
     console.log("Game State Reset");
 }
 
+function adjustGameOverTextPosition() {
+    const gameOverText = document.querySelector('#game-over-container h1');
+    const canvasHeight = canvas.height;
+    const textHeight = gameOverText.offsetHeight;
+    const topPosition = (canvasHeight * 0.45) - (textHeight / 2);
+    gameOverText.style.top = `${topPosition}px`;
+}
+
+adjustGameOverTextPosition();
+
 // Initialize game components
 createGhosts();
 createPellets();
