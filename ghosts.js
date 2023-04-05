@@ -11,6 +11,8 @@ const GHOST_PUPIL_X_OFFSET = 11;
 const GHOST_PUPIL_Y_OFFSET = 12;
 const GHOST_EYE_DISTANCE = 15; // You can adjust this value to change the distance between the eyes
 
+let tailUpdateCounter = 0;
+
 let ghosts = [];
 
 function isGhostCollision(newX, newY) {
@@ -43,6 +45,7 @@ function createGhosts() {
             direction: 'left',
             mode: 'scatter',
             scaredTimer: 0,
+            tailState: 0,
         });
     }
 }
@@ -153,20 +156,27 @@ function updateGhosts() {
             ghost.y = newY;
         }
 
+        // Toggle the tailState for each ghost based on the counter
+        if (tailUpdateCounter % 10 === 0) { // Change 10 to control the animation speed
+            ghost.tailState = 1 - ghost.tailState;
+        }
+
         // Draw the ghost on the canvas
         ctx.fillStyle = ghost.mode === 'frightened' ? 'rgb(60, 60, 255)' : ghost.color;
 
-        // Draw the ghost's body
+        // Draw the ghost's body with alternating tail
         ctx.beginPath();
         ctx.arc(ghost.x + GHOST_RADIUS, ghost.y + GHOST_RADIUS, GHOST_RADIUS, Math.PI, 0, false);
         ctx.lineTo(ghost.x + 32, ghost.y + 32);
-        ctx.lineTo(ghost.x + 28, ghost.y + 24);
+
+        const tailOffset = ghost.tailState * 2;
+        ctx.lineTo(ghost.x + 28, ghost.y + 24 - tailOffset);
         ctx.lineTo(ghost.x + 24, ghost.y + 32);
-        ctx.lineTo(ghost.x + 20, ghost.y + 24);
+        ctx.lineTo(ghost.x + 20, ghost.y + 24 + tailOffset);
         ctx.lineTo(ghost.x + 16, ghost.y + 32);
-        ctx.lineTo(ghost.x + 12, ghost.y + 24);
+        ctx.lineTo(ghost.x + 12, ghost.y + 24 - tailOffset);
         ctx.lineTo(ghost.x + 8, ghost.y + 32);
-        ctx.lineTo(ghost.x + 4, ghost.y + 24);
+        ctx.lineTo(ghost.x + 4, ghost.y + 24 + tailOffset);
         ctx.lineTo(ghost.x, ghost.y + 32);
         ctx.closePath();
         ctx.fill();
@@ -185,6 +195,7 @@ function updateGhosts() {
         ctx.arc(ghost.x + GHOST_RADIUS + GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
         ctx.fill();
     }
+    tailUpdateCounter++;
 }
 
 function respawnGhosts() {
