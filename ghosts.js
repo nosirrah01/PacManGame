@@ -1,5 +1,5 @@
 const GHOST_SPEED = 2;
-const ghostColors = ['red', 'pink', 'cyan', 'orange'];
+const ghostColors = ['red', 'pink', 'cyan', 'orange', 'magenta', 'purple', 'green', 'teal',];
 
 // Constants for ghost drawing
 const GHOST_RADIUS = 16;
@@ -194,6 +194,13 @@ function updateGhosts() {
         ctx.arc(ghost.x + GHOST_RADIUS - GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
         ctx.arc(ghost.x + GHOST_RADIUS + GHOST_EYE_DISTANCE / 2, ghost.y + GHOST_PUPIL_Y_OFFSET, GHOST_PUPIL_RADIUS, 0, 2 * Math.PI);
         ctx.fill();
+
+        // Draw mode, targetX, and targetY above the ghost's head
+        ctx.fillStyle = 'white';
+        ctx.font = '12px Arial';
+        ctx.fillText(`mode: ${ghost.mode}`, ghost.x, ghost.y - 5);
+        ctx.fillText(`targetX: ${ghost.targetX}`, ghost.x, ghost.y - 20);
+        ctx.fillText(`targetY: ${ghost.targetY}`, ghost.x, ghost.y - 35);
     }
     tailUpdateCounter++;
 }
