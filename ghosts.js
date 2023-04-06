@@ -196,11 +196,11 @@ function updateGhosts() {
         ctx.fill();
 
         // Draw mode, targetX, and targetY above the ghost's head
-        ctx.fillStyle = 'white';
-        ctx.font = '12px Arial';
-        ctx.fillText(`mode: ${ghost.mode}`, ghost.x, ghost.y - 5);
-        ctx.fillText(`targetX: ${ghost.targetX}`, ghost.x, ghost.y - 20);
-        ctx.fillText(`targetY: ${ghost.targetY}`, ghost.x, ghost.y - 35);
+        //ctx.fillStyle = 'white';
+        //ctx.font = '12px Arial';
+        //ctx.fillText(`mode: ${ghost.mode}`, ghost.x, ghost.y - 5);
+        //ctx.fillText(`targetX: ${ghost.targetX}`, ghost.x, ghost.y - 20);
+        //ctx.fillText(`targetY: ${ghost.targetY}`, ghost.x, ghost.y - 35);
     }
     tailUpdateCounter++;
 }
