@@ -1,6 +1,9 @@
 function levelUp() {
     console.log('Level up!');
 
+    // Clear the old maze
+    clearMaze();
+
     // Regenerate the maze
     initMaze();
 

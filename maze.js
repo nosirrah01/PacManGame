@@ -39,12 +39,31 @@ function generateMaze(x, y) {
     }
 }
 
-function initMaze() {
+//function initMaze() {
+//    // Clear the maze array
+//    for (let i = 0; i < WIDTH; i++) {
+//        maze[i].fill(true);
+//    }
+
+//    // Generate a new maze
+//    generateMaze(
+//        Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3,
+//        Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3
+//    );
+//}
+
+//function initMaze() {
+//    generateMaze(Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3, Math.floor(Math.random() * ((HEIGHT - 4) / 2)) * 2 + 3);
+//}
+
+function clearMaze() {
     // Clear the maze array
     for (let i = 0; i < WIDTH; i++) {
         maze[i].fill(true);
     }
+}
 
+function initMaze() {
     // Generate a new maze
     generateMaze(
         Math.floor(Math.random() * ((WIDTH - 4) / 2)) * 2 + 3,

@@ -54,6 +54,9 @@ function update() {
 }
 
 function resetGameState() {
+    // Clear the old maze
+    clearMaze();
+
     // Regenerate the maze
     initMaze();
 
